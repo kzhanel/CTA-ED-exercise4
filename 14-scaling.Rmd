@@ -109,10 +109,10 @@ dim(dfm_newstweets)
 
 #### estimate the Wordfish model ####
 ##wordfish model is a method to analyse text data, primarily designed to estimate ideological or thematic positions of words and documents
-set.seed(123L) ##this function. creates a random number generator with a specific value. 
+set.seed(123L) ##this function. creates a random number generator with a specific value that repeat each time
 ##putting a value in set.seed() allows you to get the same sequence of numbers.
 dfm_newstweets_results <- textmodel_wordfish(dfm_newstweets, 
-                                             sparse = TRUE)
+                                             sparse = TRUE) ##sparse indicates that there are a lot of 0s in the dfm
 ##textmodel_wordfish() function for wordfish, applying the model to dfm_newtweets
 
 ```
@@ -128,7 +128,7 @@ We can then plot our estimates of the $\theta$s---i.e., the estimates of the lat
 ```{r}
 textplot_scale1d(dfm_newstweets_results)
 
-##textplot_scale1d() used to visulise scale of documents and words typically from wordfish method. this reveals patterns or relationship of words based on position in the dimensions
+##textplot_scale1d() used to visulise scale of documents and words typically for wordfish model. this reveals patterns or relationship of words based on position in the dimensions
 ```
 
 Interestingly, we seem not to have captured ideology but some other tonal dimension. We see that the tabloid newspapers are scored similarly, and grouped toward the right hand side of this latent dimension; whereas the broadsheet newspapers have an estimated theta further to the left.
@@ -147,10 +147,10 @@ And we can also look at these features.
 ```{r}
 
 features <- dfm_newstweets_results[["features"]]
-##this creates a new variable called features, by extracting all the word from dfm_newstweets_results
+##this creates a new variable called features, by extracting all the words (removing newspaper column) from dfm_newstweets_results
 
 betas <- dfm_newstweets_results[["beta"]]
-##this creates a new variable called beta, extracting all the scaling position of the words.
+##this creates a new variable called beta, extracting all the scaling position of the words (removes estimated psi and keeps beta).
 
 feat_betas <- as.data.frame(cbind(features, betas))
 feat_betas$betas <- as.numeric(feat_betas$betas)
@@ -209,7 +209,7 @@ dim(kaneko_dfm_study1)
 1. Estimate a wordfish model for the @kaneko_estimating_2021 data
 
 ```{r}
-##since the code before the exercise similar to row 97 we can start from there
+
 
 #### estimate the Wordfish model ####
 ##wordfish model is a method to analyse text data, primarily designed to estimate ideological or thematic positions of words and documents
@@ -230,7 +230,7 @@ summary(kaneko_dfm_study1_results)
 #plotting the estimated positions of the newspapers
 textplot_scale1d(kaneko_dfm_study1_results)
 
-##textplot_scale1d() used to visualise scale of documents and words typically from wordfish method. this reveals patterns or relationship of words based on position in the dimensions
+##textplot_scale1d() used to visualise scale of documents and words typically from wordfish method. this reveals patterns or relationship of words based on position in the dimensions 
 ```
 ```{r}
 #plotting estimated positions of words in the wordfish dimension
