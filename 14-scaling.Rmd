@@ -230,13 +230,15 @@ summary(kaneko_dfm_study1_results)
 #plotting the estimated positions of the newspapers
 textplot_scale1d(kaneko_dfm_study1_results)
 
-##textplot_scale1d() used to visualise scale of documents and words typically from wordfish method. this reveals patterns or relationship of words based on position in the dimensions 
+##textplot_scale1d() used to visualise scale of documents and words typically from wordfish method. this reveals patterns or relationship of words based on position in the dimensions.
 ```
+##The above graph shows ideological positions of the newspapers. The closer the points of different newspapers, the higher the ideological similarity between the nespapers (Yomiuri, Nikkei, Sankei, for instance, being closer to each other indicates their ideological similarity). Yomiuri, Nikkei leaning towards center-center-right, whilst Sankei is leaning harder right. Asahi and Chunichi, in contrast, are leaning towards left-wing ideology. 
 ```{r}
 #plotting estimated positions of words in the wordfish dimension
 textplot_scale1d(kaneko_dfm_study1_results, margin = "features")
 ##in this visualisation, the focus of scaling is through features (words). margin = "features" allows this.
 ```
+##This graph shows the estimated positions of the words used by newspapers within the dimension, with words assigned +2 being prominent in right-leaning newspapers, -2 in left-leaning newspapers, and 0 in center positioned newspapers. The table below shows the words (features) and their specific scale within ideological position. 
 
 ```{r}
 #closer look at the features results
